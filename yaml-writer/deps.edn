@@ -1,0 +1,22 @@
+;; https://clojure.org/reference/deps_edn
+
+{;; Project paths
+ ;; Paths are subdirectories relative to the project root.
+ :paths ["src" "resources" "scripts"]
+
+ ;; Project dependencies
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        org.clojure/data.json {:mvn/version "2.5.0"}
+        ;; org.clojure/data.xml {:mvn/version "0.0.8"}
+        clj-commons/clj-yaml {:mvn/version "1.0.27"}}
+
+ ;; Aliases give a name to any set of edn data
+ :aliases {;; :dev {:jvm-opts ["-XX:-OmitStackTraceInFastThrow"]}
+           :test {:extra-paths ["test"]
+                  :extra-deps {lambdaisland/kaocha {:mvn/version "1.87.1366"}
+                               lambdaisland/kaocha-cloverage {:mvn/version "1.1.89"}
+                               ;; org.clojure/test.check        {:mvn/version "RELEASE"}
+                               }
+                  :main-opts ["-m" "kaocha.runner"]}
+           :clj-kondo {:extra-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}
+                       :main-opts  ["-m" "clj-kondo.main"]}}}
