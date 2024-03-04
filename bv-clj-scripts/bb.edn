@@ -1,0 +1,22 @@
+{:paths ["scripts" "resources"]
+
+ :deps {medley/medley {:mvn/version "1.4.0"}}
+
+ :tasks
+ {:requires ([babashka.fs :as fs])
+
+  :init (do (def log (Object.))
+            (defn print-public-task [k]
+              (let [{:keys [:private :name]} (current-task)]
+                (when-not private
+                  (println (case k :enter "☐" "✓") name)))))
+
+  ;; :enter/:leave are usually used for logging
+  :enter (do (print-public-task :enter)
+             (locking log
+               (println (str (:name (current-task)) ":") (java.util.Date.))))
+
+  :leave (print-public-task :leave)
+
+  test {:doc  "Run all tests."
+        :task (clojure "-M:test")}}}
