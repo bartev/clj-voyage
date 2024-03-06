@@ -12,11 +12,14 @@
                   (println (case k :enter "☐" "✓") name)))))
 
   ;; :enter/:leave are usually used for logging
-  :enter (do (print-public-task :enter)
+  ;; Print the task name and time when starting
+  :enter (do #_(print-public-task :enter)
              (locking log
                (println (str (:name (current-task)) ":") (java.util.Date.))))
 
+  ;; Print check mark with task name when done
   :leave (print-public-task :leave)
+
 
   test {:doc  "Run all tests."
         :task (clojure "-M:test")}}}
