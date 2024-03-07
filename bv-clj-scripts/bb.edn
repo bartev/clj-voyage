@@ -22,4 +22,11 @@
 
 
   test {:doc  "Run all tests."
-        :task (clojure "-M:test")}}}
+        :task (apply clojure "-M:test" *command-line-args*)}
+
+  watch {:doc "Run tests, watching for changes"
+         :task (apply clojure "-X:watch-test" *command-line-args*)}
+
+  nrepl {:doc "Start REPL"
+         :task (shell "rlwrap bb clojure -M:nrepl")}
+  }}

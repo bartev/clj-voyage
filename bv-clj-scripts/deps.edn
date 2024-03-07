@@ -10,16 +10,30 @@
 
  :paths ["src" "resources"]
 
- :aliases {;; :dev {:jvm-opts ["-XX:-OmitStackTraceInFastThrow"]}
-           :test {:extra-paths ["test" "test-resources"]
-                  :extra-deps {lambdaisland/kaocha {:mvn/version "1.87.1366"}
-                               lambdaisland/kaocha-cloverage {:mvn/version "1.1.89"}
-                               ;; org.clojure/test.check        {:mvn/version "RELEASE"}
-                               }
-                  :main-opts ["-m" "kaocha.runner"]}
-           :clj-kondo {:extra-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}
-                       :main-opts  ["-m" "clj-kondo.main"]}
-           :doc       {:extra-paths ["script" "docs"]
-                       :extra-deps  {marginalia/marginalia {:mvn/version "0.9.1"}}
-                       :main-opts   ["-m" "blogify"]}
-           }}
+ :aliases
+ {;; :dev {:jvm-opts ["-XX:-OmitStackTraceInFastThrow"]}
+
+  ;; Run tests with Kaocha
+  :test {:extra-paths ["test" "test-resources"]
+         :extra-deps {lambdaisland/kaocha {:mvn/version "1.87.1366"}
+                      lambdaisland/kaocha-cloverage {:mvn/version "1.1.89"}
+                      ;; org.clojure/test.check        {:mvn/version "RELEASE"}
+                      }
+         :main-opts ["-m" "kaocha.runner"]}
+
+  ;; Run with clojure -X:watch-test
+  :watch-test {:extra-paths "test" "test-resources"
+               :extra-deps {lambdaisland/kaocha {:mvn/version "1.87.1366"}}
+               :exec-fn kaocha.runner/exec-fn
+               :exec-args {:watch? true
+                           :skip-meta :slow}
+               :main-opts ["-m" "kaocha.runner"]}
+
+  ;; How do I run this?
+  :clj-kondo {:extra-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}
+              :main-opts  ["-m" "clj-kondo.main"]}
+
+  :doc       {:extra-paths ["script" "docs"]
+              :extra-deps  {marginalia/marginalia {:mvn/version "0.9.1"}}
+              :main-opts   ["-m" "blogify"]}
+  }}
