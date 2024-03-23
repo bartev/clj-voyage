@@ -1,0 +1,21 @@
+{:tasks
+ {:requires ([babashka.fs :as fs])
+
+  test {:doc "Run tests"
+        :task (apply clojure "-M:test" *command-line-args*)}
+
+  ;; kaocha {:doc "Run tests with kaocha"
+  ;;         ;; :task (apply clojure "-M:kaocha" *command-line-args*)
+  ;;         :task (clojure "-M:test" *command-line-args*)}
+
+  ;; k-watch {:doc "Run tests with kaocha watch"
+  ;;          :task (apply clojure "-M:kaocha " *command-line-args*)
+  ;;          }
+
+  watch {:doc "Run tests, watching for changes"
+         :task (apply clojure "-X:watch-test" *command-line-args*)}
+  nrepl {:doc "Start REPL"
+         :task (shell "rlwrap bb clojure -M:nrepl")}
+
+  uber {:doc "Build uberjar"
+        :task (clojure "-T:build uber")}}}

@@ -48,3 +48,4 @@ request/
 rpc-venv/
 
 scratch*
+/.rebel_readline_history
