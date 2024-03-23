@@ -22,7 +22,7 @@
          :main-opts ["-m" "kaocha.runner"]}
 
   ;; Run with clojure -X:watch-test
-  :watch-test {:extra-paths "test" "test-resources"
+  :watch-test {:extra-paths ["test" "test-resources"]
                :extra-deps {lambdaisland/kaocha {:mvn/version "1.87.1366"}}
                :exec-fn kaocha.runner/exec-fn
                :exec-args {:watch? true
@@ -35,5 +35,4 @@
 
   :doc       {:extra-paths ["script" "docs"]
               :extra-deps  {marginalia/marginalia {:mvn/version "0.9.1"}}
-              :main-opts   ["-m" "blogify"]}
-  }}
+              :main-opts   ["-m" "blogify"]}}}

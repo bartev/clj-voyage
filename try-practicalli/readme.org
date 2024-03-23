@@ -1,0 +1,56 @@
+#+title: readme-try-practicalli
+#+author: Bartev
+#+date: 2024-03-18
+
+
+[[https://practical.li/clojure/clojure-cli/practicalli-config/#install][Practicalli Config (Install)]]
+
+* Aliases to start with
+
+Start with the following aliases to keep things simple
+
+=clojure -T:project/create :name domain/project-name= to create a new clojure project
+
+=clojure -M:repl/reloaded= to run a fully loaded REPL and rich terminal UI (which can be connected to from Clojure editors)
+
+=clojure -X:test/watch= to run tests on file save (or :test/run to manually run tests once)
+
+Use Clojure tools.build to create jar and uberjar packages of the project.
+
+* junk project
+
+** Created with
+
+#+begin_src clojure
+  clojure -T:project/create :name my/junk
+#+end_src
+
+** Run commands
+
+[[https://practical.li/clojure/clojure-cli/execution-options/#quick-summary][Executing from command line]]
+
+Run the function =greet= in the namespace =my.junk=
+#+name: exec-function
+#+begin_src clojure
+clojure -X my.junk/greet :team-name foo
+#+end_src
+
+Run the =main= function
+#+begin_src clojure
+  clojure -M -m my.junk
+#+end_src
+
+or
+
+#+begin_src clojure
+  clojure -M -m my.junk MyTeam
+#+end_src
+
+* REPL Reloaded
+
+[[https://practical.li/clojure/clojure-cli/repl-reloaded/]]
+
+** Start REPL
+#+begin_src shell :results verbatim
+  clojure -M:repl/reloaded
+#+end_src
